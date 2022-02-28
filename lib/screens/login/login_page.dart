@@ -14,12 +14,19 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       body: SafeArea(
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 32.0),
+          padding: const EdgeInsets.symmetric(horizontal: 84.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -67,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: const Text('Sign up'),
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),
