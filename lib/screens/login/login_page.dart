@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_login_app/screens/register/register_page.dart';
 import 'package:simple_login_app/widgets/text_field_input.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -70,7 +71,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const RegisterScreen()),
+                      );
+                    },
                     child: const Text('Sign up'),
                   ),
                 ],
