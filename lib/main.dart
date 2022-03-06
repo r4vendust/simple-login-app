@@ -1,7 +1,24 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_login_app/screens/login/login_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  if (kIsWeb) {
+    await Firebase.initializeApp(
+      options: const FirebaseOptions(
+        apiKey: "AIzaSyDJyz6Ff4A-9GSsPVBnQtxAYZJkLSl2oOY",
+        appId: "1:1099232135672:web:b5c21925ae2dc66938ee0d",
+        messagingSenderId: "1099232135672",
+        projectId: "simple-login-app-12f9a",
+        authDomain: "simple-login-app-12f9a.firebaseapp.com",
+        storageBucket: "simple-login-app-12f9a.appspot.com",
+      ),
+    );
+  } else {
+    await Firebase.initializeApp();
+  }
   runApp(const MyApp());
 }
 
