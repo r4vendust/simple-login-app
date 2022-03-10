@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:simple_login_app/screens/login/login_page.dart';
+import 'package:simple_login_app/services/flutterfire.dart';
+import 'package:simple_login_app/utils/colors.dart';
 import 'package:simple_login_app/widgets/text_field_input.dart';
+import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -15,7 +17,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPassController = TextEditingController();
 
   final _formkey = GlobalKey<FormState>();
 
@@ -26,13 +28,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _lastNameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
-    _confirmPasswordController.dispose();
+    _confirmPassController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: kBackgroundColor,
       body: Center(
         child: Form(
           key: _formkey,
@@ -75,6 +77,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     hintText: 'Email',
                     labelText: 'Email',
                     textInputType: TextInputType.emailAddress,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Email must not be empty';
+                      }
+                      return null;
+                    },
                   ),
                   const SizedBox(
                     height: 12.0,
@@ -86,39 +94,49 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     labelText: 'Password',
                     textInputType: TextInputType.text,
                     isPass: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please, enter a proper password';
+                      }
+                      return null;
+                    },
                   ),
                   const SizedBox(
                     height: 12.0,
                   ),
-                TextFieldInput(
-                  textEditingController: _confirmPasswordController,
-                  icon: Icons.lock,
-                  hintText: 'Confirm password',
-                  labelText: 'Confirm password',
-                  textInputType: TextInputType.text,
-                  isPass: true,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please, enter a proper password';
-                    }
-                    if (_passwordController.text !=
-                        _confirmPasswordController.text) {
-                      return 'Password does not match';
-                    }
-                    return null;
-                  },
-                ),
+                  TextFieldInput(
+                    textEditingController: _confirmPassController,
+                    icon: Icons.lock,
+                    hintText: 'Confirm password',
+                    labelText: 'Confirm password',
+                    textInputType: TextInputType.text,
+                    isPass: true,
+                    validator: (value) {
+                      if (_passwordController.text !=
+                          _confirmPassController.text) {
+                        return 'Password does not match';
+                      }
+                      return null;
+                    },
+                  ),
                   const SizedBox(
                     height: 24.0,
                   ),
                   SizedBox(
                     width: double.infinity,
+                    height: 32.0,
                     child: TextButton(
-                      onPressed: () {
-                        if(_formkey.currentState!.validate()) {
-                          print("Successful");
+                      onPressed: () async {
+                        if (_formkey.currentState!.validate()) {
+                          // Makes user access the home page without login
+                          context.read<AuthenticationService>().signUp(
+                              email: _emailController.text,
+                              password: _passwordController.text);
+                          context.read<AuthenticationService>().signIn(
+                              email: _emailController.text,
+                              password: _passwordController.text);
                         } else {
-                          print("Unsuccessfull");
+                          debugPrint('Unsuccessfull');
                         }
                       },
                       child: const Text('Submit'),

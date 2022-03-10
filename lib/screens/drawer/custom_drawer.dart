@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:simple_login_app/services/flutterfire.dart';
+import 'package:provider/provider.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({Key? key}) : super(key: key);
@@ -8,7 +11,7 @@ class CustomDrawer extends StatelessWidget {
     return Drawer(
       child: ListView(
         children: [
-          const CustomDrawerHeader(),
+          CustomDrawerHeader(),
           CustomListTile(
             icon: Icons.home_outlined,
             text: 'Home',
@@ -17,8 +20,48 @@ class CustomDrawer extends StatelessWidget {
           CustomListTile(
             icon: Icons.arrow_circle_down,
             text: 'Log out',
-            onTap: () {},
+            onTap: () async {
+              await context.read<AuthenticationService>().signOut();
+            },
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class CustomDrawerHeader extends StatelessWidget {
+  CustomDrawerHeader({Key? key}) : super(key: key);
+
+  final String? _email = FirebaseAuth.instance.currentUser?.email;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.blue[600],
+      width: double.infinity,
+      height: 200,
+      padding: const EdgeInsets.only(top: 20.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(bottom: 10.0),
+            height: 70.0,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                image: AssetImage('lib/assets/default_profile_pic.jpg'),
+              ),
+            ),
+          ),
+          const Text(
+            'Username Surname',
+            style: TextStyle(
+              fontSize: 16.0,
+            ),
+          ),
+          Text('$_email'),
         ],
       ),
     );
@@ -74,42 +117,6 @@ class CustomListTile extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class CustomDrawerHeader extends StatelessWidget {
-  const CustomDrawerHeader({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blue[600],
-      width: double.infinity,
-      height: 200,
-      padding: const EdgeInsets.only(top: 20.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            margin: const EdgeInsets.only(bottom: 10.0),
-            height: 70.0,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: AssetImage('lib/assets/default_profile_pic.jpg'),
-              ),
-            ),
-          ),
-          const Text(
-            'Username Surname',
-            style: TextStyle(
-              fontSize: 16.0,
-            ),
-          ),
-          const Text('example@email.com'),
-        ],
       ),
     );
   }
