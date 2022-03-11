@@ -74,10 +74,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 40.0,
                 child: TextButton(
                   onPressed: () async {
-                    await context.read<AuthenticationService>().signIn(
+                    String _isLogged = await context.read<AuthenticationService>().signIn(
                           email: _emailController.text,
                           password: _passwordController.text,
                         );
+                        if (_isLogged == 'Error') {
+                          setOpacity();
+                        }
                   },
                   child: const Text('Sign in'),
                   style: TextButton.styleFrom(
