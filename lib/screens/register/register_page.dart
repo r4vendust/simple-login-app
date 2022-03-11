@@ -57,6 +57,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     hintText: 'Name',
                     labelText: 'Name',
                     textInputType: TextInputType.text,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Name must not be empty';
+                      }
+                      else if (value.length < 3) {
+                        return 'Name must be equal or longer then 3';
+                      }
+                      return null;
+                    },
                   ),
                   const SizedBox(
                     height: 12.0,
