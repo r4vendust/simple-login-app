@@ -9,3 +9,4 @@ TODO
 ## Dependencies
 
 * Flutter
+* Flutter SVG
