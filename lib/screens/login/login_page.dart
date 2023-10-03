@@ -7,10 +7,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
@@ -74,22 +74,23 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 40.0,
                 child: TextButton(
                   onPressed: () async {
-                    String _isLogged = await context.read<AuthenticationService>().signIn(
-                          email: _emailController.text,
-                          password: _passwordController.text,
-                        );
-                        if (_isLogged == 'Error') {
-                          setOpacity();
-                        }
+                    String isLogged =
+                        await context.read<AuthenticationService>().signIn(
+                              email: _emailController.text,
+                              password: _passwordController.text,
+                            );
+                    if (isLogged == 'Error') {
+                      setOpacity();
+                    }
                   },
-                  child: const Text('Sign in'),
                   style: TextButton.styleFrom(
-                    primary: Colors.white,
+                    foregroundColor: Colors.white,
                     backgroundColor: Colors.blue[500],
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(24.0),
                     ),
                   ),
+                  child: const Text('Sign in'),
                 ),
               ),
               const SizedBox(

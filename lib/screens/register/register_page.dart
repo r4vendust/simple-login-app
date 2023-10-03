@@ -6,10 +6,10 @@ import 'package:simple_login_app/widgets/text_field_input.dart';
 import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({Key? key}) : super(key: key);
+  const RegisterScreen({super.key});
 
   @override
-  _RegisterScreenState createState() => _RegisterScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
@@ -60,8 +60,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Name must not be empty';
-                      }
-                      else if (value.length < 3) {
+                      } else if (value.length < 3) {
                         return 'Name must be equal or longer then 3';
                       }
                       return null;
@@ -148,14 +147,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           debugPrint('Unsuccessfull');
                         }
                       },
-                      child: const Text('Submit'),
                       style: TextButton.styleFrom(
-                        primary: Colors.white,
+                        foregroundColor: Colors.white,
                         backgroundColor: Colors.blue[500],
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16.0),
                         ),
                       ),
+                      child: const Text('Submit'),
                     ),
                   ),
                   const SizedBox(
