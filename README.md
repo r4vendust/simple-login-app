@@ -13,13 +13,16 @@ Clone the repository to your computer with git clone https://github.com/r4vendus
 ## Usage
 
 ### Sign in screen
-![Singin](/lib/assets/readme/login_screen.png)
+<img src="/lib/assets/readme/login_screen.png" width="50%">
+
 ### Sign up screen
-![Signup](/lib/assets/readme/register_screen.png)
+<img src="/lib/assets/readme/register_screen.png" width="50%">
+
 ### Welcome screen
-![Welcome](/lib/assets/readme/home_screen.png)
+<img src="/lib/assets/readme/home_screen.png" width="50%">
+
 ### Drawer
-![Drawer](/lib/assets/readme/drawer.png)
+<img src="/lib/assets/readme/drawer.png" width="50%">
 
 ## Authorship
 This project has made by Victor Lopes under the MIT License.
