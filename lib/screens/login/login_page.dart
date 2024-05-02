@@ -19,6 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   double _opacity = 0.0;
+  bool _isLoading = false;
   void setOpacity() {
     setState(() {
       _opacity = 1.0;
@@ -72,29 +73,48 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(
                     height: 24.0,
                   ),
-                  SizedBox(
-                    width: 200.0,
-                    height: 40.0,
-                    child: TextButton(
-                      onPressed: () async {
-                        String isLogged =
-                            await context.read<AuthenticationService>().signIn(
-                                  email: _emailController.text,
-                                  password: _passwordController.text,
-                                );
-                        if (isLogged == 'Error') {
-                          setOpacity();
-                        }
-                      },
-                      style: TextButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        backgroundColor: Colors.blue[500],
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24.0),
+                  Stack(
+                    children: [
+                      SizedBox(
+                        width: 200.0,
+                        height: 40.0,
+                        child: TextButton(
+                          onPressed: _isLoading
+                              ? null
+                              : () async {
+                                  setState(() {
+                                    _isLoading = true;
+                                  });
+                                  String isLogged = await context
+                                      .read<AuthenticationService>()
+                                      .signIn(
+                                        email: _emailController.text,
+                                        password: _passwordController.text,
+                                      );
+                                  if (isLogged == 'Error') {
+                                    setOpacity();
+                                  }
+                                  setState(() {
+                                    _isLoading =
+                                        false; // Desativa o estado de carregamento
+                                  });
+                                },
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.white,
+                            backgroundColor: Colors.blue[500],
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(24.0),
+                            ),
+                          ),
+                          child: const Text('Sign in'),
                         ),
                       ),
-                      child: const Text('Sign in'),
-                    ),
+                      if (_isLoading)
+                        const Positioned.fill(
+                            child: Center(
+                          child: CircularProgressIndicator(),
+                        )),
+                    ],
                   ),
                   const SizedBox(
                     height: 24.0,
@@ -111,7 +131,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   FittedBox(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      
                       children: [
                         const Text(
                           "Don't have a account yet?",
