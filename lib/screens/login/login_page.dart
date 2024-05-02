@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:simple_login_app/services/flutterfire.dart';
 import 'package:simple_login_app/screens/register/register_page.dart';
 import 'package:simple_login_app/utils/colors.dart';
