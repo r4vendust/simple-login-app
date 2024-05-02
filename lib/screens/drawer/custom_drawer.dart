@@ -4,7 +4,7 @@ import 'package:simple_login_app/services/flutterfire.dart';
 import 'package:provider/provider.dart';
 
 class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({Key? key}) : super(key: key);
+  const CustomDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class CustomDrawer extends StatelessWidget {
 }
 
 class CustomDrawerHeader extends StatelessWidget {
-  CustomDrawerHeader({Key? key}) : super(key: key);
+  CustomDrawerHeader({super.key});
 
   final String? _email = FirebaseAuth.instance.currentUser?.email;
 
@@ -74,8 +74,7 @@ class CustomListTile extends StatelessWidget {
   final Function onTap;
 
   const CustomListTile(
-      {Key? key, required this.icon, required this.text, required this.onTap})
-      : super(key: key);
+      {super.key, required this.icon, required this.text, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

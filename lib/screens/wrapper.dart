@@ -5,7 +5,7 @@ import 'package:simple_login_app/screens/home/home_page.dart';
 import 'package:simple_login_app/screens/login/login_page.dart';
 
 class AuthenticationWrapper extends StatelessWidget {
-  const AuthenticationWrapper({Key? key}) : super(key: key);
+  const AuthenticationWrapper({super.key});
 
   @override
   Widget build(BuildContext context) {
