@@ -10,15 +10,14 @@ class TextFieldInput extends StatelessWidget {
   final String? Function(String?)? validator;
 
   const TextFieldInput(
-      {Key? key,
+      {super.key,
       required this.textEditingController,
       this.icon,
       required this.hintText,
       required this.labelText,
       required this.textInputType,
       this.isPass = false,
-      this.validator,})
-      : super(key: key);
+      this.validator,});
 
   @override
   Widget build(BuildContext context) {

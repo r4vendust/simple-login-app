@@ -4,11 +4,12 @@ This is a simple login APP developed in Flutter using Firebase.
 
 ## Getting Started
 
-Clone the repository to your computer with git clone https://github.com/r4vendust/simple-login-app.git and do flutter run. Choose the desired platform (developed using android emulator)
+* Clone the repository to your computer with git clone https://github.com/r4vendust/simple-login-app.git and do flutter run. Choose the desired platform (developed using android emulator)
+* Use FlutterFire to install firebase from the CLI
 
 ## Dependencies
-
 * Flutter
+* Firebase
 
 ## Usage
 
@@ -25,4 +26,4 @@ Clone the repository to your computer with git clone https://github.com/r4vendus
 <img src="/lib/assets/readme/drawer.png" width="50%">
 
 ## Authorship
-This project has made by Victor Lopes under the MIT License.
+This project has been made by Victor Lopes under the MIT License.
