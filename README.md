@@ -1,16 +1,29 @@
-# simple_login_app
+# Simple Login APP
 
-A new Flutter project.
+This is a simple login APP developed in Flutter using Firebase.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+* Clone the repository to your computer with git clone https://github.com/r4vendust/simple-login-app.git and do flutter run. Choose the desired platform (developed using android emulator)
+* Use FlutterFire to install firebase from the CLI
 
-A few resources to get you started if this is your first Flutter project:
+## Dependencies
+* Flutter
+* Firebase
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Usage
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Sign in screen
+<img src="/lib/assets/readme/login_screen.png" width="50%">
+
+### Sign up screen
+<img src="/lib/assets/readme/register_screen.png" width="50%">
+
+### Welcome screen
+<img src="/lib/assets/readme/home_screen.png" width="50%">
+
+### Drawer
+<img src="/lib/assets/readme/drawer.png" width="50%">
+
+## Authorship
+This project has been made by Victor Lopes under the MIT License.
