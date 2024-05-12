@@ -92,11 +92,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                       );
                                   if (isLogged == 'Error') {
                                     setOpacity();
+                                    setState(() {
+                                      _isLoading =
+                                          false; // Desativa o estado de carregamento
+                                    });
                                   }
-                                  setState(() {
-                                    _isLoading =
-                                        false; // Desativa o estado de carregamento
-                                  });
                                 },
                           style: TextButton.styleFrom(
                             foregroundColor: Colors.white,
